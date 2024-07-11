@@ -1,0 +1,64 @@
+<!--
+  @description       : 
+  @author            : Josh Dayment
+  @group             : 
+  @last modified on  : 07-09-2024
+  @last modified by  : Josh Dayment
+-->
+<template>
+
+
+  <!-- Document scanning controls -->
+  <div class="slds-var-p-around_medium">
+    {scannerInstructions}
+    <br /><br />
+
+    <lightning-button variant="brand" label="Camera" title="Capture document with camera" icon-name="utility:scan"
+      onclick={handleScanFromCameraClick}>
+    </lightning-button>
+
+    <lightning-button variant="brand" label="Photo Library" title="Scan document from photo library"
+      onclick={handleScanFromPhotoLibraryClick} icon-name="utility:record_lookup" class="slds-var-m-left_x-small">
+    </lightning-button>
+  </div>
+
+  <!-- Display errors, if any -->
+  <template lwc:if={scannerError}>
+    <lightning-formatted-text value={scannerError}>
+    </lightning-formatted-text>
+  </template>
+
+  <!-- Display text of scanned document, if any -->
+  <template lwc:if={showResults}>
+    <template lwc:if={scannedDocument}>
+      <div class="slds-var-p-around_medium">
+        Text Recognition Result: <br /><br />
+        {scannedDocument.text}
+      </div>
+    </template>
+
+
+
+
+    <!-- If there is a scanned document, display a preview -->
+
+    <template lwc:if={scannedDocument}>
+      <div class="previewDiv">
+
+        <!-- document image -->
+        <div class="divContentCentered">
+          <img class="previewImage" src={scannedDocument.imageBytes} />
+        </div>
+
+        <!-- highlights overlay; note use of manual DOM rendering -->
+        <div class="divContentCentered">
+          <div class="contour" lwc:dom="manual"></div>
+        </div>
+
+      </div>
+    </template>
+
+
+  </template>
+
+</template>

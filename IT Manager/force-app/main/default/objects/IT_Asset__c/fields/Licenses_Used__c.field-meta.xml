@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Licenses_Used__c</fullName>
+    <description>Roll-up of all Active IT Asset Assignment records</description>
+    <label>Licenses Used</label>
+    <summaryFilterItems>
+        <field>IT_Asset_Assignment__c.Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </summaryFilterItems>
+    <summaryForeignKey>IT_Asset_Assignment__c.IT_Asset__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
